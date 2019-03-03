@@ -1,0 +1,4 @@
+vagrant/.vagrant
+vagrant/inventory_builder
+vagrant/config
+redsocks/

@@ -1,0 +1,58 @@
+Vagrant.configure("2") do |config|
+
+  config.vm.define "acs" do |acs|
+    acs.vm.box = "ubuntu/bionic64"
+    acs.vm.box_version = "20190225.0.0"
+    acs.vm.box_check_update = false
+    acs.vm.hostname = "acs"
+    acs.vm.network "private_network", ip: "192.168.10.1"
+    acs.vm.network "private_network", ip: "192.168.33.10"
+    acs.vm.synced_folder ".", "/vagrant"
+    # acs.vm.network "forwarded_port", guest: 
+  end
+
+  config.vm.define "mgr1" do |mgr1|
+    mgr1.vm.box = "ubuntu/bionic64"
+    mgr1.vm.box_version = "20190225.0.0"
+    mgr1.vm.box_check_update = false
+    mgr1.vm.hostname = "mgr1"
+    mgr1.vm.network "private_network", ip: "192.168.10.2"
+    mgr1.vm.network "private_network", ip: "192.168.33.11"
+    mgr1.vm.synced_folder ".", "/vagrant"
+    mgr1.vm.network "forwarded_port", guest: 9000, host: 9090
+  end
+
+  config.vm.define "wrk1" do |wrk1|
+    wrk1.vm.box = "ubuntu/bionic64"
+    wrk1.vm.box_version = "20190225.0.0"
+    wrk1.vm.box_check_update = false
+    wrk1.vm.hostname = "wrk1"
+    wrk1.vm.network "private_network", ip: "192.168.10.3"
+    wrk1.vm.network "private_network", ip: "192.168.33.12"
+    wrk1.vm.synced_folder ".", "/vagrant"
+  end
+
+  config.vm.define "wrk2" do |wrk2|
+    wrk2.vm.box = "ubuntu/bionic64"
+    wrk2.vm.box_version = "20190225.0.0"
+    wrk2.vm.box_check_update = false
+    wrk2.vm.hostname = "wrk2"
+    wrk2.vm.network "private_network", ip: "192.168.10.4"
+    wrk2.vm.network "private_network", ip: "192.168.33.13"
+    wrk2.vm.synced_folder ".", "/vagrant"
+  end
+
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 2048
+  end
+
+  config.vm.define "cns" do |cns|
+    cns.vm.box = "ubuntu/bionic64"
+    cns.vm.box_version = "20190225.0.0"
+    cns.vm.box_check_update = false
+    cns.vm.hostname = "cns"
+    cns.vm.network "private_network", ip: "192.168.10.5"
+    cns.vm.synced_folder ".", "/vagrant"
+  end
+
+end
