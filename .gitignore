@@ -1,5 +1,7 @@
 vagrant/.vagrant
 vagrant/inventory_builder
 vagrant/config
+vagrant/kursik
+vagrant/id_rsa
 vagrant/ubuntu-bionic-18.04-cloudimg-console.log
 redsocks/
